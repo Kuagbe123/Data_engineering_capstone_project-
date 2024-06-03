@@ -71,10 +71,10 @@ The crypto_data_pipeline (Kline Data) streamlines the extraction, transformation
 
 ```plaintext
 +---------------------+
-|                              |
+|                     |
 |   Binance API       |
-|  (Kline data)          |
-|                               |
+|  (Kline data)       |
+|                     |
 +----------+----------+
            |
            v
