@@ -1,6 +1,7 @@
 # Data_engineering_capstone_project-
 
-### Data Engineering Capstone Project: Real-Time Data Pipeline for Binance Data Analytics
+# Real-time and Historical Cryptocurrency Market Analysis and Visualization Platform for BTC/USDT using Binance Data
+
 
 #### Project Description
 
