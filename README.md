@@ -3,13 +3,11 @@
 # Real-time and Historical Cryptocurrency Market Analysis and Visualization Platform for BTC/USDT using Binance Data
 
 
-#### Project Description
+## Project Overview
 
-**Objective:**
-The primary objective of this capstone project is to design and implement a real-time data pipeline that can process, store, and analyze data from Binance, one of the largest cryptocurrency exchanges in the world. The project aims to provide actionable insights through data analytics and visualization, enabling traders, analysts, and other stakeholders to make informed decisions.
+This project focuses on developing a platform for real-time and historical analysis and visualization of the BTC/USDT trading pair using Binance Kline data. The platform aims to provide users with the ability to explore, analyze, and derive insights into market trends and patterns for BTC/USDT.
 
-**Scope:**
-This project will cover the entire data engineering lifecycle, including data ingestion, processing, storage, and visualization. The pipeline will handle diverse data types, including trading data, market data, and blockchain transactions.
+
 
 **Components:**
 
