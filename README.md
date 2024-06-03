@@ -165,7 +165,7 @@ By weighing these pros and cons, users can determine whether this pipeline meets
 
 1. Clone the repository and install requirements:
    ```bash
-   git clone "https://github.com/princekwusu/Crypto_Data_Pipeline.git"
+   git clone "https://github.com/Kuagbe123/Data_engineering_capstone_project-.git"
    cd Crypto_Data_Pipeline
    pip install -r requirements.txt 
    ```
