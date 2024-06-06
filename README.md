@@ -1,79 +1,198 @@
 # Data_engineering_capstone_project-
 
-### Data Engineering Capstone Project: Real-Time Data Pipeline for Binance Data Analytics
+# Real-time and Historical Cryptocurrency Market Analysis and Visualization Platform for BTC/USDT using Binance Data
 
-#### Project Description
 
-**Objective:**
-The primary objective of this capstone project is to design and implement a real-time data pipeline that can process, store, and analyze data from Binance, one of the largest cryptocurrency exchanges in the world. The project aims to provide actionable insights through data analytics and visualization, enabling traders, analysts, and other stakeholders to make informed decisions.
+## Project Overview
 
-**Scope:**
-This project will cover the entire data engineering lifecycle, including data ingestion, processing, storage, and visualization. The pipeline will handle diverse data types, including trading data, market data, and blockchain transactions.
+This project focuses on developing a platform for real-time and historical analysis and visualization of the BTC/USDT trading pair using Binance Kline data. The platform aims to provide users with the ability to explore, analyze, and derive insights into market trends and patterns for BTC/USDT.
 
-**Components:**
 
-1. **Data Ingestion:**
-    - **Sources:** Data will be ingested from Binance's API endpoints, including spot trading data, futures data, and market tickers.
-    - **Tools:** Use Apache Kafka for real-time data streaming and ingestion. Kafka connectors will integrate with Binance APIs.
+### Kline Data Description
 
-2. **Data Processing:**
-    - **Stream Processing:** Use Apache Spark Streaming or Apache Flink for real-time data processing. The processing tasks will include data cleansing, transformation, and enrichment.
-    - **Batch Processing:** Utilize Apache Spark for batch processing of historical data. This will help in generating periodic reports and running large-scale data transformations.
+Kline data, also known as candlestick data, offers a summarized view of trading activity for a specific trading pair within a specified time frame. Each candlestick data point includes information about the opening price, closing price, highest price, lowest price, and trading volume for the period.
 
-3. **Data Storage:**
-    - **Real-Time Storage:** Implement a NoSQL database like Apache Cassandra or MongoDB for storing real-time processed data.
-    - **Data Lake:** Use a data lake (e.g., AWS S3, Azure Data Lake) to store raw and processed data at scale.
-    - **Data Warehouse:** Integrate with a data warehouse solution such as Amazon Redshift, Google BigQuery, or Snowflake for analytical querying and reporting.
+#### Contents of Kline Data
 
-4. **Data Analysis and Visualization:**
-    - **Analytics:** Perform data analysis using tools like Apache Hive, Presto, or Spark SQL. Generate insights on trading patterns, market trends, price movements, and liquidity.
-    - **Visualization:** Create dashboards and reports using tools like Tableau, Power BI, or Grafana. Visualize key metrics such as trading volumes, price fluctuations, order book depth, and market correlations.
+Kline data includes the following fields:
+- **open_time**: Timestamp indicating the start of the candlestick period.
+- **open**: Opening price of the asset.
+- **high**: Highest price of the asset during the period.
+- **low**: Lowest price of the asset during the period.
+- **close**: Closing price of the asset.
+- **volume**: Total trading volume of the asset during the period.
+- **close_time**: Timestamp indicating the end of the candlestick period.
+- **quote_asset_volume**: Total volume of the quote asset traded during the period.
+- **num_trades**: Number of trades executed during the period.
+- **taker_base_vol**: Total volume of trades taken by the taker during the period.
+- **taker_quote_vol**: Total volume of the quote asset traded by takers during the period.
+- **ignore**: Placeholder field, not used in analysis.
+- **order_book**: Data related to the order book at the time of closing the candlestick.
 
-5. **Data Governance and Security:**
-    - Implement data governance policies to ensure data quality, consistency, and compliance.
-    - Ensure data security through encryption, access control, and regular audits.
+### Additional Project Requirements
 
-**Project Plan:**
+- **AWS Account**: Set up an AWS account to utilize services such as Amazon S3, AWS Glue, and Amazon EC2.
+- **Snowflake Account**: Set up a Snowflake account for data storage and analysis.
+- **Binance API Key**: Register for a Binance account and obtain an API key to access BTC/USDT Kline data.
+- **Programming Languages and Libraries**: Utilize Python, SQL, and/or R for data processing, analysis, and model building. Relevant libraries include Pandas, NumPy, SciPy, Scikit-learn, and TensorFlow.
+- **Version Control and Collaboration**: Use Git and GitHub for version control and collaboration to ensure all project-related code and documentation are well-organized and accessible.
 
-1. **Requirement Gathering:**
-    - Identify key business requirements and stakeholders.
-    - Define data sources and data types from Binance.
-    - Determine the KPIs and metrics to be tracked.
+#### Purpose of Kline Data
 
-2. **Architecture Design:**
-    - Design the architecture of the data pipeline.
-    - Choose the appropriate tools and technologies.
+Kline data provides valuable insights for traders, analysts, and researchers by enabling them to:
+- Analyze price movements: Identify trends, support, and resistance levels.
+- Gauge market sentiment: Determine buying and selling pressure.
+- Understand trading volume: Assess liquidity and market activity.
+- Develop trading strategies: Use historical data to backtest and optimize strategies.
 
-3. **Implementation:**
-    - Set up data ingestion pipelines using Kafka.
-    - Develop stream and batch processing jobs using Spark/Flink.
-    - Configure data storage solutions (NoSQL database, data lake, data warehouse).
-    - Implement data analysis scripts and visualization dashboards.
+#### Example Usage
 
-4. **Testing and Validation:**
-    - Test the data pipeline for performance, scalability, and reliability.
-    - Validate the accuracy and completeness of the data.
+The functions `get_klines()` and `save_klines_to_csv()` allow users to retrieve Kline data for a specific trading pair and time frame from the Binance API and save it as a CSV file. For example, `save_klines_to_csv("BTCUSDT", "1h")` retrieves hourly Kline data for BTCUSDT and saves it to "BTCUSDT_1h.csv".
 
-5. **Deployment and Monitoring:**
-    - Deploy the data pipeline in a production environment.
-    - Set up monitoring and alerting for the pipeline.
+Using this data, users can perform various analyses, create visualizations, and develop trading strategies based on historical price action and trading volume.
 
-6. **Documentation and Training:**
-    - Document the entire data pipeline and its components.
-    - Provide training sessions for end-users and stakeholders.
+## Overview
 
-**Deliverables:**
-- A fully functional real-time data pipeline.
-- Data storage solutions (NoSQL database, data lake, data warehouse).
-- Analytical reports and visualization dashboards.
-- Documentation and user guides.
+The crypto_data_pipeline (Kline Data) streamlines the extraction, transformation, and loading of BTCUSDT data from Binance into Snowflake for analysis. The pipeline comprises the following steps:
 
-**Technologies and Tools:**
-- **Data Ingestion:** Apache Kafka, Kafka Connect
-- **Data Processing:** Apache Spark, Apache Flink
-- **Data Storage:** Apache Cassandra, MongoDB, AWS S3, Azure Data Lake, Amazon Redshift, Google BigQuery, Snowflake
-- **Data Analysis:** Apache Hive, Presto, Spark SQL
-- **Visualization:** Tableau, Power BI, Grafana
-- **Orchestration:** Apache Airflow, Prefect
+1. **Data Extraction**
+   - Data is extracted from Binance using the Binance API.
+   - Extracted data is stored in an S3 bucket created for raw data.
 
-By the end of this project, you will have hands-on experience in building and managing a robust data engineering solution that can handle real-time data processing and analytics for Binance. This capstone project will demonstrate your ability to apply data engineering principles and tools to solve real-world problems in the cryptocurrency trading domain.
+2. **Data Transformation**
+   - Involves data cleaning, column removal, and derivation.
+   - Transformed data is stored in a separate S3 bucket created for transformed data.
+
+3. **Loading Data into Warehouse or Snowpipe Integration**
+   - Snowpipe is configured to monitor the transformed data file in the S3 bucket.
+   - A Snowpipe is created to automatically ingest data into Snowflake tables upon the arrival of the transformed data.
+
+### Architecture Diagram
+
+```plaintext
++---------------------+
+|                     |
+|   Binance API       |
+|  (Kline data)       |
+|                     |
++----------+----------+
+           |
+           v
++----------+----------+
+|                     |
+|  Data Extraction    |
+|                     |
++----------+----------+
+           |
+           v
++----------+----------+
+|                     |
+| Data Transformation |
+|                     |
++----------+----------+
+           |
+           v
++----------+----------+
+|                     |
+|    S3 Buckets       |
+| (Raw & Transformed) |
++----------+----------+
+           |
+           v
++----------+----------+
+|                     |
+| Loading Data into   |
+|    Snowflake        |
+|                     |
++---------------------+
+```
+
+In this diagram:
+- **Binance API**: Source of trade data.
+- **Data Extraction**: Fetching data from the Binance API.
+- **Data Transformation**: Cleaning and processing the extracted data.
+- **Loading Data into Snowflake**: Storing the transformed data in Snowflake for analysis.
+
+## Components
+
+- **Apache Airflow**: Manages and schedules the ETL tasks.
+- **Snowflake Snowpipe**: Loads data into Snowflake from S3.
+- **Python**: Scripts for data extraction, transformation, and loading.
+- **S3 Buckets**: AWS S3 buckets for storing raw and transformed data.
+
+### Pros and Cons of the Binance Data Pipeline
+
+#### Pros
+1. **Scalability**: Handles large volumes of data efficiently.
+2. **Flexibility**: Customizable according to user requirements.
+3. **Reliability**: Ensures data integrity with S3 storage.
+4. **Ease of Deployment**: Clear setup instructions and minimal dependencies.
+5. **Comprehensive Data Handling**: Covers a wide range of data storage and processing needs.
+
+#### Cons
+1. **Complexity**: Requires configuring AWS services and managing dependencies.
+2. **Cost**: Associated AWS and Snowflake costs.
+3. **Maintenance Overhead**: Regular maintenance needed for smooth operation.
+4. **Limited Error Handling**: Basic error handling, requiring additional implementation for robust management.
+5. **Potential Security Risks**: Importance of proper configuration and security measures.
+
+By weighing these pros and cons, users can determine whether this pipeline meets their specific data processing needs.
+
+## Setup
+
+### Prerequisites
+
+- Docker to run Airflow
+- Access to an Apache Airflow environment or Docker container
+- AWS account with S3 credentials
+- Snowflake account with necessary privileges
+- Python environment with required packages (`boto3`, `pandas`, etc.)
+
+### Configuration
+
+1. **Airflow Container Setup**
+   - Ensure an Airflow environment or container is running.
+   - Mount the project directory containing the DAG definition file into the Airflow container.
+
+2. **AWS Configuration**
+   - Configure AWS with your IAM access keys.
+
+3. **Snowflake Configuration**
+   - Update the Snowflake SQL script (`snowflakedb_def.sql`) with your AWS credentials.
+   - Execute the script in Snowflake to set up the database, schema, tables, and pipes.
+
+## Usage
+
+1. Clone the repository and install requirements:
+   ```bash
+   git clone "https://github.com/Kuagbe123/Data_engineering_capstone_project-.git"
+   cd Crypto_Data_Pipeline
+   pip install -r requirements.txt 
+   ```
+2. Start the Airflow container:
+   ```bash
+   docker-compose up -d 
+   ```
+3. Access the web server at https://localhost:8080.
+4. Log in using default credentials (username: airflow, password: airflow).
+5. Ensure the DAG file (`crypto_data_pipeline.py`) is in the DAGs directory of your Airflow environment.
+6. Trigger the DAG manually or schedule automatic execution.
+7. Monitor the Airflow UI for task execution and check logs for errors.
+8. Verify data ingestion in Snowflake using SQL queries:
+   ```sql
+   SELECT * FROM cryptodb.cryptoschema.btcusdt;
+   ```
+
+## Customization
+
+- Adjust the Binance API endpoint, S3 bucket name, and parameters as needed.
+- Modify the main script (`crypto_data_pipeline.py`) for custom data processing logic.
+
+## Contributing
+
+Contributions and suggestions are welcome. For major changes, please open an issue first to discuss potential modifications.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
