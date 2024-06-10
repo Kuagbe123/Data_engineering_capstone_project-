@@ -192,6 +192,10 @@ By weighing these pros and cons, users can determine whether this pipeline meets
 
 Contributions and suggestions are welcome. For major changes, please open an issue first to discuss potential modifications.
 
+## Pipeline image
+![system_design](https://github.com/Kuagbe123/Data_engineering_capstone_project-/assets/89991027/21f1f40a-1ff1-47f9-8d43-9a6d6f595ea8)
+
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
